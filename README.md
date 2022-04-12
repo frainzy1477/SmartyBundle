@@ -8,9 +8,10 @@ SmartyBundle
 
 This [Symfony](http://symfony.com/) bundle provides integration for the [Smarty3](http://www.smarty.net/) template engine.
 
-[![Total Downloads](https://poser.pugx.org/noiselabs/smarty-bundle/downloads.png)](https://packagist.org/packages/noiselabs/smarty-bundle)
 [![Latest Stable Version](https://poser.pugx.org/noiselabs/smarty-bundle/v/stable.png)](https://packagist.org/packages/noiselabs/smarty-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/noiselabs/smarty-bundle/v/unstable.png)](https://packagist.org/packages/noiselabs/smarty-bundle)
+![Tests](https://github.com/noiselabs/SmartyBundle/actions/workflows/tests.yml/badge.svg)
+[![Total Downloads](https://poser.pugx.org/noiselabs/smarty-bundle/downloads.png)](https://packagist.org/packages/noiselabs/smarty-bundle)
 [![License](https://poser.pugx.org/noiselabs/smarty-bundle/license.png)](https://packagist.org/packages/noiselabs/smarty-bundle)
 
 See this compatibility chart to find out which version of the SmartyBundle you need depending on your version of Symfony.
@@ -25,7 +26,7 @@ See this compatibility chart to find out which version of the SmartyBundle you n
 
 ### Update: Symfony 4 support (October 2021)
 
-Symfony 4 support is being developed in the [3.0 branch](https://github.com/noiselabs/SmartyBundle/tree/3.0). Please checkout that branch if you wish to test it and/or contribute.
+Symfony 4 support is now being developed in the [master branch](https://github.com/noiselabs/SmartyBundle/tree/master) instead of the [3.0 branch](https://github.com/noiselabs/SmartyBundle/tree/3.0).
 
 Requirements
 ------------

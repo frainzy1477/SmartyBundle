@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="smarty" class="Smarty"/>
+
+        <service id="templating.engine.smarty" class="NoiseLabs\Bundle\SmartyBundle\SmartyEngine" public="true">
+            <argument type="service" id="smarty"/>
+            <argument type="service" id="smarty.templating.loader"/>
+            <argument type="service" id="service_container" />
+            <argument>%smarty.options%</argument>
+            <argument type="service" id="smarty.templating.globals" on-invalid="null" />
+            <argument type="service" id="logger" on-invalid="null" />
+            <tag name="templating.engine" />
+            <tag name="monolog.logger" channel="SmartyBundle" />
+        </service>
+
+        <service id="smarty.file_locator" class="Symfony\Component\HttpKernel\Config\FileLocator">
+            <factory class="NoiseLabs\Bundle\SmartyBundle\Loader\FileLocatorFactory" method="createFileLocator"/>
+            <argument type="service" id="kernel" />
+            <argument>%kernel.root_dir%/Resources</argument>
+            <argument type="collection">
+                <argument>%kernel.root_dir%</argument>
+            </argument>
+            <argument>%smarty.options.templates_dir%</argument>
+        </service>
+
+        <service id="smarty.extension.core" class="NoiseLabs\Bundle\SmartyBundle\Extension\CoreExtension" public="false">
+            <tag name="smarty.extension" />
+        </service>
+
+        <service id="smarty.extension.actions" class="NoiseLabs\Bundle\SmartyBundle\Extension\ActionsExtension" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="smarty.templating.helper.actions" />
+        </service>
+
+        <service id="smarty.extension.assets" class="NoiseLabs\Bundle\SmartyBundle\Extension\AssetsExtension" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="assets.packages" on-invalid="ignore" />
+        </service>
+
+        <service id="smarty.extension.routing" class="NoiseLabs\Bundle\SmartyBundle\Extension\RoutingExtension" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="router" />
+        </service>
+
+        <service id="smarty.extension.trans" class="NoiseLabs\Bundle\SmartyBundle\Extension\TranslationExtension" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="smarty.extension.security" class="NoiseLabs\Bundle\SmartyBundle\Extension\SecurityExtension" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="security.authorization_checker" on-invalid="null" />
+            <argument type="service" id="security.csrf.token_manager" on-invalid="null" />
+        </service>
+
+        <service id="smarty.extension.expression" class="NoiseLabs\Bundle\SmartyBundle\Extension\ExpressionExtension" public="false">
+            <tag name="smarty.extension" />
+        </service>
+
+        <service id="smarty_engine" alias="templating.engine.smarty" />
+    </services>
+</container>
